@@ -1,0 +1,145 @@
+Class 1 - MICROSERVICES
+
+1. What is a Microservice?
+
+A microservice is a small, independent service that performs one specific function and communicates with other services over a network. It’s part of a larger application but is loosely coupled, meaning it can evolve independently.
+Key Characteristics:
+Single Responsibility: Each microservice does one thing well.
+Independent Deployability: You can deploy/update it without affecting others.
+Own Database (Polyglot Persistence): Each microservice can have its own database.
+Technology Agnostic: Each service can use different programming languages, frameworks, or databases.
+Decentralized Governance: Each team manages its service independently.
+
+Example:
+A simple e-commerce platform can have microservices like:
+User Service: Handles user registration/login.
+Product Service: Manages product catalog.
+Order Service: Handles orders and payment.
+Notification Service: Sends emails/SMS.
+2. Components of a Microservice Architecture
+
+Here’s a high-level breakdown of a microservice system and its components:
+A. Service Components
+
+API Layer / Gateway
+Entry point for clients.
+Can handle routing, authentication, rate-limiting.
+Example: API Gateway (like Kong, NGINX, AWS API Gateway).
+Business Logic Layer (Service)
+Core functionality of the service.
+Example: Order Service calculates total price, validates stock.
+Database Layer
+Each microservice can manage its own database.
+Example: Order Service has a PostgreSQL DB, Product Service has MongoDB.
+Service Registry / Discovery
+Keeps track of available services and their locations.
+Needed in dynamic environments where services can scale up/down.
+Example: Eureka, Consul, etcd.
+Messaging / Event Bus
+For asynchronous communication between services.
+Example: Kafka, RabbitMQ.
+Configuration Service
+Centralized configuration for all services.
+Example: Spring Cloud Config, Consul KV Store.
+B. Supporting Components
+
+Load Balancer
+Distributes requests across multiple instances of a microservice.
+Example: NGINX, HAProxy.
+Monitoring & Logging
+Observability is critical in microservices.
+Example: Prometheus, Grafana, ELK Stack (Elasticsearch, Logstash, Kibana).
+Security
+Authentication & Authorization.
+API Key, JWT, OAuth2, mTLS for service-to-service authentication.
+Circuit Breaker / Resilience
+Prevents cascading failures in microservices.
+Example: Netflix Hystrix.
+Caching
+Reduce database load.
+Example: Redis, Memcached.
+3. Communication in Microservices
+
+Microservices communicate via two main patterns: Synchronous and Asynchronous.
+A. Synchronous Communication
+
+Request-Response model, usually over HTTP/HTTPS (REST, gRPC).
+Pros: Simple, immediate response, easy to debug.
+Cons: Tight coupling, delays propagate.
+Example:
+User Service calls Order Service via REST API to get order history.
+GET /orders?userId=123
+B. Asynchronous Communication
+
+Event-driven or messaging model.
+Services emit events and others subscribe.
+Pros: Loose coupling, scalable, resilient.
+Cons: Complexity in tracking failures, eventual consistency.
+Example:
+Order Service publishes OrderPlaced event to Kafka.
+Notification Service consumes the event to send email.
+{  "event": "OrderPlaced",  "orderId": 123,  "userId": 456}
+4. Key Concepts Surrounding Microservices
+
+A. Service Coupling
+
+Tight Coupling: One service depends heavily on another (bad for microservices).
+Loose Coupling: Services are independent (good).
+B. Data Management
+
+Database per Service: Each microservice manages its own data.
+Eventual Consistency: Data across services may not be synchronized immediately.
+CQRS (Command Query Responsibility Segregation): Separate read/write models for better scalability.
+C. API Design
+
+REST: Standard HTTP methods (GET, POST, PUT, DELETE).
+gRPC: High-performance, uses Protocol Buffers.
+GraphQL: Client specifies exact data it needs.
+D. Observability
+
+Logging: Centralized logs (ELK).
+Monitoring: Metrics (CPU, memory, request rate) with Prometheus/Grafana.
+Tracing: Distributed tracing to track request flow (Jaeger, Zipkin).
+E. Deployment Patterns
+
+Containerization: Docker for packaging services.
+Orchestration: Kubernetes for managing containers.
+CI/CD Pipelines: Automated testing, build, deploy (Jenkins, GitHub Actions).
+F. Resilience Patterns
+
+Circuit Breaker: Stop calling failing service to prevent overload.
+Retry: Retry failed requests with backoff.
+Bulkhead: Isolate services to prevent cascading failures.
+5. Microservices vs Monolithic Architecture
+
+Feature	Monolith	Microservices
+Size	Large, single deployable unit	Small, multiple deployable services
+Scalability	Scale whole app	Scale individual services
+Coupling	Tight	Loose
+Technology Flexibility	Limited	High (polyglot)
+Fault Isolation	Poor	Good
+Deployment Frequency	Slower	Faster, independent
+6. Real-Life Example of Microservice Architecture
+
+Scenario: E-commerce site
+[Client]   |   v[API Gateway]   |--------> [User Service] ---> UserDB   |--------> [Product Service] ---> ProductDB   |--------> [Order Service] ---> OrderDB   |--------> [Payment Service] ---> PaymentDB   |--------> [Notification Service] ---> (Kafka/RabbitMQ)
+Client calls API Gateway.
+API Gateway routes request to relevant service.
+Services talk synchronously via REST or asynchronously via events.
+Services maintain own DBs for autonomy.
+Observability via centralized logging and monitoring.
+7. Prerequisites Before Studying DevOps & Cloud
+
+To effectively handle microservices in DevOps/cloud environments, you should know:
+Version Control: Git/GitHub.
+Containers: Docker (build, run, push images).
+Orchestration: Kubernetes (pods, deployments, services).
+CI/CD Pipelines: GitHub Actions, Jenkins.
+Cloud Basics: AWS/Azure/GCP (compute, storage, networking).
+Monitoring & Logging: Prometheus, Grafana, ELK.
+Networking Concepts: Load balancing, DNS, service discovery, HTTP/gRPC.
+Messaging Systems: Kafka, RabbitMQ, SQS.
+
+
+
+                        
