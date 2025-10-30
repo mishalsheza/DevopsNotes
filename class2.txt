@@ -1,0 +1,83 @@
+Class 2 - Intro to Devops
+
+
+1. Overview of DevOps
+
+What is DevOps?
+DevOps = Dev + Ops
+Set of practices + tools + culture
+Goal → faster & reliable software delivery
+
+Brings Development and Operations together
+Improves collaboration and automation
+
+2. Challenges in DevOps
+Biggest challenge → cultural change
+Teams resist new workflows
+Needs mindset shift & teamwork
+
+3. Key Concepts in DevOps
+
+DevOps Philosophy
+Breaks silos between development and operations teams.
+Encourages automation and ownership across teams.
+
+Shift Left Approach
+Testing and security are introduced early in the development lifecycle.
+Helps identify bugs and vulnerabilities sooner.
+Reduces cost and effort of fixing issues later.
+
+4. Security Testing in DevOps
+
+Types of Security Testing
+SAST
+Checks source code
+No execution needed
+
+DAST
+Checks running application
+Finds runtime vulnerabilities
+
+SCA
+Scans third-party libraries
+Detects known vulnerabilities
+
+Example of Code Vulnerability
+SQL injection is a common vulnerability.
+Using Statement in Java can allow injection attacks.
+Using PreparedStatement helps prevent SQL injection by safely handling inputs.
+
+5. Continuous Integration (CI)
+
+CI Pipeline Steps
+Code checkout
+Install dependencies
+Linting
+Build application
+Run unit tests
+Security checks (SAST + SCA)
+Create artifacts (Docker / binaries)
+Deploy to staging
+
+6. Continuous Deployment (CD)
+
+After CI success
+Deployment automated
+Manual stop only on failure
+Fast & frequent releases
+
+7. Communication and Coordination in DevOps
+
+API Gateway
+Acts as a single entry point for client requests.
+Handles routing, authentication, and throttling.
+
+Microservices Communication
+Synchronous communication is real-time and blocking.
+Asynchronous communication is non-blocking and event-driven.
+Message brokers like RabbitMQ and Kafka are commonly used.
+
+8. Conclusion
+DevOps integrates development, operations, testing, and security.
+It improves collaboration, automation, and delivery speed.
+Overall, DevOps increases efficiency and software reliability.
