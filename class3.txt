@@ -1,0 +1,111 @@
+Class 3 - Linux Refresher
+
+Introduction to CI/CD
+What is CI/CD?
+
+CI/CD stands for Continuous Integration and Continuous Deployment.
+It is a modern software development practice that automates the process of building, testing, and deploying applications.
+The objective is to integrate code changes frequently and deploy them reliably with minimal manual effort.
+
+Continuous Integration (CI)
+
+Continuous Integration ensures that every code change is automatically validated.
+
+CI Workflow
+
+Code is pushed to a version control repository.
+
+An automated pipeline is triggered.
+
+Stages in CI
+
+Linting
+Checks code quality and syntax errors.
+Helps identify issues early before the build stage.
+
+Build
+Downloads required dependencies.
+Compiles and packages the application.
+
+Unit Testing
+Tests individual components of the application.
+Mocking is used to simulate external dependencies.
+
+Security Checks
+
+SCA (Software Composition Analysis): Detects vulnerabilities in third-party libraries.
+
+SAST (Static Application Security Testing): Analyzes source code for security issues without executing it.
+
+Artifacts in CI
+
+Artifacts are the outputs generated during the build process.
+They are stored and reused during deployment.
+
+Examples of Artifacts
+
+JAR, WAR files
+
+Executables (.exe)
+
+Gems
+
+Docker images
+
+Artifacts ensure consistency between CI and CD stages.
+
+Containers and Docker
+Dockerization
+
+Docker packages an application along with its dependencies into containers.
+This ensures the application runs consistently across different environments.
+
+Docker Images
+
+Static, immutable artifacts.
+
+Built using a base image with additional layers.
+
+Layer caching speeds up the build process.
+
+Pushing Docker Images
+
+Docker images are pushed to an artifact repository.
+This enables version control, sharing, and reuse across environments.
+
+Continuous Deployment (CD)
+
+Continuous Deployment automates the release of applications after CI.
+
+Deployment Pipeline
+
+Deployment starts from stored artifacts.
+
+Can be a separate pipeline or an extension of CI.
+
+Reduces manual intervention and release delays.
+
+System Integration Testing (SIT)
+
+First environment where the complete application is deployed.
+
+Tests interaction between different system components.
+
+Validates end-to-end functionality.
+
+IP Addressing in Deployment
+Public IP
+
+Assigned temporarily to instances.
+
+Changes when an instance is stopped or restarted.
+
+Not ideal for production environments.
+
+Elastic IP
+
+Fixed IP address.
+
+Remains unchanged across restarts.
+
+Suitable for production deployments requiring stable endpoints.
