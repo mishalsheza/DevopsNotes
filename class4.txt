@@ -1,0 +1,137 @@
+Class 4- Intro to Shell Scripting
+
+
+
+ Commands in the snippet
+
+mkdir test
+Creates a new folder named test.
+
+
+cd test/
+Changes current directory to test.
+
+echo "Learning in scaler" > scaler.txt
+
+This command:
+Prints the text Learning in scaler
+Redirects it (>) into a file named scaler.txt
+If the file does not exist, it is created
+If it exists, it will overwrite the file
+So now the folder test contains one file: scaler.txt.
+4. Move back to home directory
+
+cd ..
+This goes one level up — out of the test directory.
+5. List files
+
+ls -a
+Shows all files including hidden ones (-a shows files starting with .).
+6. Try to remove the test directory
+
+rmdir test
+This fails, because:
+rmdir can remove only empty directories
+Output:
+rmdir: failed to remove 'test': Directory not empty
+7. Force delete the directory with its contents
+
+rm -rf test
+Meaning:
+Flag	Description
+-r	recursive (delete inside files/folders)
+-f	force delete without asking confirmation
+This deletes the test folder along with scaler.txt inside it
+
+
+Operator	Meaning	Effect on existing file
+>	Redirect + Overwrite	Deletes old content
+>>	Redirect + Append	Preserves old content
+
+
+
+—>   find . -name  "*.txt"
+Part	Meaning
+find	Searches for files or directories
+.	Search in the current directory (and all subdirectories)
+-name	Match by filename
+"*.txt"	Look for files whose names end with .txt
+
+—>   find . -type  f -size +50MB
+Component	Meaning
+find	Search for files or directories
+.	Start searching from the current directory (and subdirectories)
+-type f	Only look for files (not folders)
+-size +50M	Return files larger than 50 megabytes
+
+CHMOD
+Permission	Symbol	Value
+Read	r	4
+Write	w	2
+Execute	x	1
+
+Command	Meaning	Owner	Group	Others
+chmod 777 file	Full access (unsafe)	rwx	rwx	rwx
+chmod 755 file	Common for scripts	rwx	r-x	r-x
+chmod 700 file	Private	rwx	---	---
+chmod 644 file	Documents/web files	rw-	r--	r--
+chmod 600 key.pem	SSH private key	rw-	---	---
+
+Command	Meaning
+chmod u+x file	Add execute for user
+chmod g-w file	Remove write from group
+chmod o+r file	Add read for others
+chmod a+x script.sh	Add execute for all
+chmod u=rwx,g=rx,o=r file	Set exact perms
+
+VI COMMAND
+
+Insert mode      → i
+Command mode     → Esc
+Save & quit      → :wq
+Quit without save→ :q!
+Delete line      → dd
+Undo             → u
+Copy line        → yy
+Paste            → p
+Search           → /word
+
+First line       → gg or 1G
+Last line        → G
+Go to line N     → :N
+Line start       → 0
+Line end         → $
+
+➜  shell1 vi helloworld.txt
+creates a file 
+
+➜  shell1 ./helloworld.txt
+zsh: permission denied: ./helloworld.txt
+tries to execute it but no permission
+
+➜  shell1 ls -lt
+total 8
+-rw-r--r--  1 shezamishal19  staff  49 Nov 23 01:40 helloworld.txt
+checks for the permission
+
+➜  shell1 sh helloworld.txt
+halooo
+
+➜  shell1 chmod 700 helloworld.txt
+changes the permission
+
+➜  shell1 ./helloworld.txt        
+halooo
+
+
+
+
+
+
+
+
+
+
+
+
+
