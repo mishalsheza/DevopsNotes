@@ -1,0 +1,83 @@
+class 5 - Git Refresher
+
+Introduction to Docker
+
+Docker is a platform used to create, manage, and run containers.
+It allows developers to package applications along with all their dependencies into a single standardized unit called a container.
+
+Docker Philosophy: “If It Fits, It Ships”
+
+The philosophy means that if an application works inside a Docker container, it will work anywhere Docker is installed.
+Developers only need to ensure their code fits and runs correctly inside a container, without worrying about the target environment.
+
+Key Concepts in Docker
+Containers
+
+Containers are lightweight, portable, and self-sufficient units that include:
+
+Application code
+
+Runtime
+
+System tools
+
+Libraries
+
+Configuration files
+
+Containers are similar to virtual machines but are more lightweight because they share the host system’s kernel while running in isolated user space.
+
+Docker Images
+
+Docker images are read-only templates used to create containers.
+They contain the application and all required dependencies.
+A container is a running instance of a Docker image.
+
+Docker Daemon
+
+The Docker daemon is a background service running on the host machine.
+It listens for Docker API requests and manages Docker components such as:
+
+Containers
+
+Images
+
+Networks
+
+Volumes
+
+Docker Client
+
+The Docker client is a command-line interface (CLI).
+It allows users to send commands to the Docker daemon.
+The client and daemon can run on the same machine or communicate remotely.
+
+Volumes and Networking
+Volumes
+
+Volumes provide persistent storage for Docker containers.
+They ensure that data is not lost when containers are stopped or deleted.
+Volumes are commonly used for databases and other stateful applications.
+
+Networking
+
+Docker provides built-in networking capabilities.
+It allows containers to communicate with each other and with external systems.
+
+Working with Docker
+Running Docker Containers
+
+Docker containers are started using the docker run command.
+Interactive containers use:
+
+-i for interactive mode
+
+-t for terminal access
+
+This allows users to access the container shell directly.
+
+Docker Hub
+
+Docker Hub is a cloud-based repository for Docker images.
+It is the default source for pulling Docker images.
+Users can push, pull, and share images with others.
