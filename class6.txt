@@ -1,0 +1,61 @@
+class 6 - Intro to Docker 
+
+Docker & Containerization Notes
+
+Docker = open platform
+Build, ship, run apps
+Separates app from infrastructure
+
+Containers
+Package app + dependencies
+Runs same everywhere
+Lightweight
+Uses host OS kernel
+
+Running Containers
+docker run → start new container
+docker run -it ubuntu bash → terminal access
+
+Existing Container
+docker exec → run commands in running container
+docker exec -it <id> bash
+
+Inspect Containers
+docker ps → list running containers
+docker container inspect <id> → details + IP
+
+Docker Images
+Images = templates
+Container = running image
+
+docker images → list images
+docker commit → create new image
+
+Docker Hub
+Image repository
+docker push <image>
+Image name starts with username
+
+Networking
+Containers have IPs
+Use inspect to find IP
+Use curl to communicate
+
+Dockerfile
+Used to build images
+Each step = new layer
+Layers help caching
+
+Detached Mode
+docker run -d
+Runs in background
+
+Why Docker?
+More efficient than VM
+No full OS overhead
+Fast & portable
+
+Conclusion
+Docker simplifies development
+Improves consistency
+Foundation for modern deployment
