@@ -1,0 +1,126 @@
+Introduction to Docker
+
+Docker is a platform that helps automate the deployment, management, scaling, and operation of application containers.
+The class focused on Docker fundamentals such as image creation, Dockerfiles, and essential commands for container management.
+
+Key Concepts
+Docker Images and Containers
+
+Docker Image
+
+A packaged environment containing everything required to run an application.
+
+Includes code, runtime, libraries, and dependencies.
+
+Acts as the blueprint for creating containers.
+
+Images are the building blocks of containers.
+
+Docker Container
+
+A running instance of a Docker image.
+
+Similar to a virtual machine but more lightweight.
+
+Uses the host system’s kernel, making it faster and more efficient.
+
+Basic Docker Commands
+Docker Build
+
+Used to create Docker images from a Dockerfile.
+
+Common option:
+
+-t to assign a name (tag) to the image.
+
+Image tags should always be in lowercase.
+
+Docker Run
+
+Used to start a container from a Docker image.
+
+Common options:
+
+-d for detached (background) mode.
+
+-p for port mapping between host and container.
+
+Dockerfile Essentials
+
+A Dockerfile is a script containing instructions used to build a Docker image.
+
+Important Dockerfile Commands
+
+FROM
+
+Specifies the base image.
+
+Acts as the starting point for image creation.
+
+RUN
+
+Executes commands during the image build process.
+
+Each RUN instruction creates a new image layer.
+
+Poor use can increase image size and reduce performance.
+
+CMD
+
+Defines the default command executed when the container starts.
+
+Can be overridden using command-line arguments.
+
+ENTRYPOINT
+
+Defines the main command for the container.
+
+Cannot be overridden easily like CMD.
+
+Advanced Concepts
+Multi-stage Builds
+
+Used to reduce final image size.
+
+Keeps only required components in the production image.
+
+Improves performance and security.
+
+Copy-On-Write (CoW) Mechanism
+
+Loads only required layers at runtime.
+
+Improves efficiency and reduces memory usage.
+
+Performance Optimization Strategies
+Reducing Image Layers
+
+Fewer layers result in better performance.
+
+Combine multiple RUN commands using &&.
+
+Base Image Optimization
+
+Choosing the correct base image is crucial.
+
+For Java applications:
+
+Use JDK during build.
+
+Use JRE in production to reduce image size.
+
+Practical Example
+
+Java application built using multi-stage Docker builds.
+
+First stage uses JDK to compile the application.
+
+Final stage uses JRE for a smaller production image.
+
+Tools and Environment
+
+Docker environment setup was demonstrated.
+
+Students practiced building images, running containers, and deploying applications.
+
+Emphasis was placed on hands-on learning.
