@@ -1,3 +1,5 @@
+Class 7 - Docker images
+
 Introduction to Docker
 
 Docker is a platform that helps automate the deployment, management, scaling, and operation of application containers.
