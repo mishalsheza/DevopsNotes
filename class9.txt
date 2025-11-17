@@ -1,0 +1,110 @@
+class 9 - Docker Containers
+
+1. Introduction to Docker Volumes
+
+Docker Volumes are a Docker-managed mechanism for persistent storage.
+They store data outside the container lifecycle, ensuring data is not lost when containers stop, crash, or are removed.
+Volumes can be shared and reused across multiple containers, making them ideal for real-world applications.
+
+2. Importance of Docker Volumes
+
+Containers are temporary by nature, but applications often need permanent data storage.
+Docker volumes:
+
+Preserve data across container restarts
+
+Decouple application logic from storage
+
+Improve data reliability and management
+
+Are essential for stateful applications like databases
+
+3. Core Concepts
+Ephemeral Nature of Containers
+
+Containers are designed to be short-lived.
+When a container is removed, all data inside it is lost unless stored externally using volumes.
+
+Writable Layer in Containers
+
+Each container has a writable layer on top of the image layers.
+Changes are stored here while the container runs.
+If the container is deleted, this writable layer is also deleted → data loss without volumes.
+
+4. Types of Docker Storage
+Named Volumes
+
+Created and managed by Docker
+
+Have user-defined names
+
+Reusable across containers
+
+Stored under:
+
+/var/lib/docker/volumes/
+
+
+Best option for production use
+
+Anonymous Volumes
+
+Automatically created by Docker
+
+No user-defined name
+
+Not easily reusable
+
+Usually used temporarily
+
+Bind Mounts
+
+Direct mapping to a host filesystem path
+
+Full control over file location
+
+Requires manual permission and path management
+
+Less portable than volumes
+
+5. Use Cases
+Database Persistence
+
+Databases running in containers must retain data even if containers fail.
+Volumes ensure database files remain intact across container restarts or recreation.
+
+Shared Data Between Containers
+
+Multiple containers can mount the same volume.
+Useful for:
+
+Microservices sharing configuration or files
+
+Logs or shared assets
+
+Collaboration between containers
+
+6. Volume Management Commands
+Create a Volume
+docker volume create <volume_name>
+
+
+Creates a Docker-managed named volume.
+
+Inspect a Volume
+docker volume inspect <volume_name>
+
+
+Displays volume metadata, including host storage location.
+
+Attach Volume to a Container
+docker run -v <volume_name>:<container_path> <image_name>
+
+
+Mounts the volume inside the container at the specified path.
+
+Read-Only Volume
+docker run -v <volume_name>:<container_path>:ro <image_name>
+
+
+Mounts the volume in read-only mode, preventing data modification
