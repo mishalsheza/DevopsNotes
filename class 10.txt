@@ -1,0 +1,138 @@
+class 10 - Docker volume
+
+Docker networking enables communication:
+
+Between containers
+
+Between containers and the host
+
+Between containers and external networks
+
+It is a core concept for running distributed and microservice-based applications in Docker.
+
+2. Key Concepts in Docker Networking
+IP Addresses
+
+An IP address uniquely identifies a device on a network.
+In Docker:
+
+Each container gets a unique IP address within its Docker network
+
+Containers use these IPs to communicate with each other
+
+Subnetting
+
+Subnetting divides a large network into smaller networks.
+
+Uses CIDR notation (e.g., /24)
+
+CIDR defines how many bits belong to the network
+
+Example:
+192.168.10.0/24
+
+Total bits = 32
+
+Host bits = 32 − 24 = 8
+
+Total IPs = 2⁸ = 256
+
+Network ID and Broadcast ID
+
+Network ID: First IP address in a subnet (identifies the network)
+
+Broadcast ID: Last IP address (used to send messages to all devices)
+
+These addresses cannot be assigned to hosts.
+
+3. Docker Zero Bridge (docker0)
+
+When Docker is installed, it creates a default virtual bridge called docker0.
+
+Acts like a virtual network switch
+
+Connects containers to each other and to the host
+
+Each container has:
+
+An eth0 interface
+
+A virtual Ethernet connection (veth pair) to docker0
+
+4. Docker Network Setup
+Default Bridge Network
+
+By default, containers run on the docker0 bridge
+
+Containers can communicate using IP addresses
+
+Example:
+
+docker run -d nginx
+
+
+Starts an Nginx container inside the default bridge network.
+
+Custom Bridge Networks
+
+Custom networks provide:
+
+Better isolation
+
+Automatic DNS-based container name resolution
+
+Create a custom bridge network:
+
+docker network create -d bridge my_bridge
+
+
+You can also define:
+
+Subnet
+
+Gateway
+
+IP range
+
+Container Communication
+
+Containers in the same network can communicate directly
+
+Docker handles routing via virtual bridges
+
+Communication can happen via:
+
+IP addresses
+
+Container names (in custom networks)
+
+5. Practical Subnetting Example
+
+A larger network can be split into smaller ones:
+
+Engineering: 192.168.10.0/26
+
+HR: 192.168.10.64/26
+
+Reception: 192.168.10.128/26
+
+Each /26 subnet provides:
+
+64 IP addresses
+
+Better isolation between departments
+
+6. Troubleshooting Docker Networking
+
+Useful command:
+
+docker inspect <container_name>
+
+
+Helps to:
+
+View container IP address
+
+Check network mode
+
+Debug connectivity issues
