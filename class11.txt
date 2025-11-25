@@ -1,0 +1,239 @@
+class 11 - Introduction to orchestration using Kubernetes
+
+Kubernetes (K8s) is an open-source container orchestration platform used to:
+
+Automate deployment
+
+Scale applications
+
+Manage containerized workloads
+
+It is designed to run applications reliably across a cluster of machines and provides features like self-healing, scaling, and service discovery.
+
+2. Key Concepts in Kubernetes
+Pods
+
+Smallest deployable unit in Kubernetes
+
+A pod contains one or more containers
+
+All containers in a pod:
+
+Share the same network namespace
+
+Share storage volumes
+
+Run on the same node
+
+Pod Scheduling
+
+Pods are created by the user
+
+Control Plane decides where to place the pod
+
+Workloads actually run on worker nodes (data plane)
+
+3. Kubernetes Architecture
+
+Kubernetes architecture consists of:
+
+Control Plane
+
+Data Plane (Worker Nodes)
+
+Control Plane
+
+Responsible for managing the cluster and maintaining the desired state.
+
+API Server
+
+Entry point for all Kubernetes operations
+
+Exposes REST APIs
+
+Handles requests from users, CLI (kubectl), and internal components
+
+etcd
+
+Distributed key-value store
+
+Stores:
+
+Cluster state
+
+Configuration
+
+Metadata
+
+Source of truth for the cluster
+
+Controller Manager
+
+Monitors cluster state
+
+Ensures desired state matches actual state
+
+Example:
+
+If 3 replicas are required and only 2 are running, it creates another pod
+
+Scheduler
+
+Decides which node a pod should run on
+
+Considers:
+
+CPU & memory availability
+
+Node constraints
+
+Affinity rules
+
+Data Plane (Worker Nodes)
+
+Responsible for running application workloads.
+
+Kubelet
+
+Agent running on every worker node
+
+Communicates with the API server
+
+Ensures containers in a pod are running
+
+Container Runtime (CRI)
+
+Executes containers
+
+Examples:
+
+containerd
+
+CRI-O
+
+Docker was used earlier but is now replaced by CRI-compatible runtimes
+
+Kube-Proxy
+
+Manages networking rules
+
+Enables communication:
+
+Between pods
+
+Between pods and services
+
+Handles load balancing at node level
+
+4. Key Features of Kubernetes
+Automatic Bin Packing
+
+Efficiently schedules pods based on resource requests
+
+Maximizes cluster utilization
+
+Self-Healing
+
+Kubernetes automatically:
+
+Restarts failed containers
+
+Reschedules pods if nodes fail
+
+Removes unhealthy containers
+
+Horizontal Scaling
+
+Scale applications up or down easily
+
+Based on:
+
+CPU usage
+
+Memory usage
+
+Custom metrics
+
+Service Discovery and Load Balancing
+
+Each pod gets its own IP
+
+Services provide:
+
+Stable DNS name
+
+Load balancing across pods
+
+No need for external service discovery tools
+
+Automated Rollouts and Rollbacks
+
+Gradual updates with zero downtime
+
+Automatically rollback if deployment fails
+
+Secrets and Configuration Management
+
+Store sensitive data securely:
+
+Passwords
+
+Tokens
+
+API keys
+
+Use ConfigMaps for non-sensitive configuration
+
+Batch and Cron Jobs
+
+Supports:
+
+One-time batch jobs
+
+Scheduled cron jobs
+
+Useful for CI/CD tasks and background processing
+
+5. Deployment and Scaling Mechanisms
+Horizontal Pod Autoscaler (HPA)
+
+Automatically changes number of pod replicas
+
+Based on CPU or custom metrics
+
+Vertical Pod Autoscaler (VPA)
+
+Adjusts CPU and memory limits of pods
+
+Improves resource efficiency
+
+Cluster Autoscaler
+
+Adjusts number of worker nodes
+
+Adds nodes when pods cannot be scheduled
+
+Removes nodes when resources are underutilized
+
+6. Practical Insights
+Certificate Management
+
+Kubernetes can automatically:
+
+Issue
+
+Rotate
+
+Manage certificates
+
+Improves security and authentication
+
+Pod Lifecycle Management
+
+When a pod is deleted:
+
+Containers are terminated
+
+Resources are released
+
+Ensures clean shutdown and efficient resource usage
