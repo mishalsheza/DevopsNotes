@@ -1,0 +1,179 @@
+class 12 - Deep dive into kubernetes pods
+
+Kubernetes works on a cluster-based architecture consisting of multiple machines (nodes).
+
+Types of Nodes
+
+Master Node (Control Plane)
+Responsible for managing the cluster and making decisions such as scheduling and maintaining desired state.
+
+Worker Nodes (Data Plane)
+Execute application workloads (pods) assigned by the master node.
+
+In the class demonstration:
+
+Three machines were used
+
+One was configured as the master
+
+Two were configured as worker nodes
+
+2. Setting Up the Master Node
+
+Before the session, necessary installations were prepared.
+
+Initialization Process
+
+Root access was taken using:
+
+sudo su
+
+
+The Kubernetes master node was initialized using:
+
+kubeadm init
+
+What Happens During Initialization
+
+Kubernetes downloads and configures essential components such as:
+
+API Server
+
+etcd
+
+Controller Manager
+
+Scheduler
+
+Required YAML manifests are automatically set up
+
+The cluster control plane becomes operational
+
+3. Understanding Pods
+What is a Pod?
+
+A pod is the smallest deployable unit in Kubernetes
+
+It can contain one or more containers
+
+Key Characteristics of Pods
+
+Co-located
+Containers in a pod share:
+
+Network namespace
+
+Storage volumes
+
+Co-scheduled
+All containers in a pod always run on the same node
+
+Pods act as a logical wrapper around containers.
+
+4. Kubernetes Architecture Overview
+Control Plane
+
+Manages the cluster and maintains the desired state.
+
+Includes:
+
+API Server – Central communication hub
+
+etcd – Key-value store for cluster data
+
+Controller Manager – Ensures desired state
+
+Scheduler – Assigns pods to worker nodes
+
+Data Plane (Worker Nodes)
+
+Responsible for running applications.
+
+Includes:
+
+Application pods
+
+Kubelet
+
+Networking components
+
+5. API Server and kubectl
+kubectl
+
+Command-line tool used to interact with the Kubernetes cluster
+
+Sends requests to the API Server
+
+API Server Responsibilities
+
+Authentication
+
+Authorization
+
+Validation of requests
+
+Communication with etcd to store or retrieve cluster state
+
+The API server acts as the single entry point for all cluster operations.
+
+6. Hands-On Deployment
+Creating and Managing Pods
+
+The instructor demonstrated:
+
+Creating pods using kubectl
+
+Monitoring pod status using commands such as:
+
+kubectl get pods
+
+
+Understanding basic kubectl commands is essential for:
+
+Debugging
+
+Monitoring
+
+Managing workloads
+
+7. Namespaces in Kubernetes
+Purpose of Namespaces
+
+Logical isolation of resources
+
+Better organization of large clusters
+
+Default Namespaces
+
+default
+
+kube-system
+
+kube-public
+
+Namespaces help separate system components from user applications.
+
+8. Networking Configuration
+CoreDNS
+
+Handles DNS resolution inside the Kubernetes cluster
+
+Allows pods to communicate using service names
+
+Network Plugins
+
+Required for pod-to-pod communication
+
+Example: Weave
+
+Without a network plugin, pods cannot communicate properly
+
+9. Scheduling and Resource Allocation
+
+Kubernetes schedules pods based on:
+
+Available CPU
+
+Available RAM
+
+If a node does not have sufficient resources, pods will remain in Pending state
