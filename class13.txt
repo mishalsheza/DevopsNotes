@@ -1,0 +1,165 @@
+class 13 - Deep dive into Kubernetes Replicasets
+
+1. Kubernetes YAML Structure
+
+Most Kubernetes configuration files are written in YAML and follow a common structure.
+
+Key Components of a Kubernetes YAML File
+
+apiVersion
+Specifies the version of the Kubernetes API being used. API versioning allows backward compatibility and feature evolution.
+
+kind
+Defines the type of Kubernetes object being created
+Examples: Pod, ReplicaSet, Deployment, Service
+
+metadata
+Contains identifying information such as:
+
+Name (mandatory)
+
+Labels
+
+Annotations
+
+spec
+Describes the desired state of the object
+The contents of spec depend on the object type (Pod, ReplicaSet, etc.)
+
+2. Understanding Pods
+What is a Pod?
+
+A Pod is the smallest deployable unit in Kubernetes
+
+It contains one or more containers
+
+All containers in a pod:
+
+Share the same network namespace
+
+Share storage volumes
+
+Are scheduled on the same node
+
+Pod Behavior
+
+If a container inside a pod crashes, Kubernetes automatically restarts or replaces it
+
+This self-healing behavior ensures minimal downtime
+
+Pods themselves are ephemeral and can be recreated when failures occur
+
+3. YAML Syntax Basics
+
+Kubernetes YAML files use three basic data structures:
+
+Key-Value Pair
+key: value
+
+List
+- item1
+- item2
+
+Map (Nested Structure)
+parent:
+  child1: value
+  child2: value
+
+
+Understanding YAML syntax is essential for writing correct Kubernetes manifests.
+
+4. ReplicaSets
+Purpose of a ReplicaSet
+
+A ReplicaSet ensures that a specified number of identical pods are always running
+
+If a pod fails, crashes, or a node goes down, the ReplicaSet automatically creates a new pod
+
+It helps maintain high availability and fault tolerance
+
+5. ReplicaSet YAML Structure
+Key Elements in a ReplicaSet Definition
+
+kind: ReplicaSet
+
+replicas:
+Defines how many pod copies should run (e.g., replicas: 3)
+
+selector:
+Matches labels to identify which pods are managed by the ReplicaSet
+
+template:
+Defines the pod specification (metadata + spec)
+
+Labels and Selectors
+
+Labels act like tags
+
+Selectors allow ReplicaSets to group and manage pods efficiently
+
+Correct label-selector matching is critical for ReplicaSet functionality
+
+6. Internal Kubernetes Workflow
+Key Components Involved
+
+API Server
+
+Entry point for all requests
+
+Handles authentication, authorization, and validation
+
+Communicates with etcd
+
+etcd
+
+Distributed key-value store
+
+Stores cluster state and configuration
+
+Scheduler
+
+Decides which node a pod should run on
+
+Considers CPU, memory, and constraints
+
+Kubelet
+
+Runs on each worker node
+
+Manages pod lifecycle on that node
+
+Reports node and pod status to the API server
+
+Controllers
+
+Continuously monitor current state
+
+Take corrective actions to match the desired state
+
+7. Pod Lifecycle and Recovery
+
+Kubernetes constantly compares:
+
+Desired state (defined in YAML)
+
+Current state (actual running pods)
+
+If a mismatch occurs (e.g., a pod crashes):
+
+ReplicaSet controller detects the issue
+
+API server is instructed to create a replacement pod
+
+This ensures automatic recovery and self-healing
+
+8. Common kubectl Commands
+Resource Management
+kubectl apply -f <file>    # Create or update resources
+kubectl delete -f <file>   # Delete resources
+kubectl get <resource>     # List resources
+
+
+Examples:
+
+kubectl get pods
+kubectl get replicasets
