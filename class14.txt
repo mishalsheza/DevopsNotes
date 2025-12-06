@@ -1,0 +1,88 @@
+class 14 - Deep dive into Kubernetes Deployments
+
+
+ Pod
+
+Smallest unit in Kubernetes
+
+Runs one app instance
+
+Contains 1 or more containers
+
+Ephemeral (can die anytime)
+
+ReplicaSet
+
+Ensures N pods always running
+
+Pod crashes? -> new pod created
+
+Node dies? -> pod rescheduled
+
+Focus = availability
+
+Deployment 
+
+Manages ReplicaSets
+
+Adds superpowers 
+
+Rolling updates
+
+Rollbacks
+
+Version history
+
+Best way to deploy apps in K8s
+
+Deployment
+   ↓
+ReplicaSet
+   ↓
+Pods
+   ↓
+Containers
+
+ Deployment YAML
+
+Same as ReplicaSet YAML
+
+Just change:
+
+kind: Deployment
+
+Scaling
+
+Increase users? -> increase replicas
+
+Less traffic? -> reduce replicas
+
+Simple & dynamic
+
+ Rolling Updates
+
+Default behavior
+
+No downtime 
+
+Old pods replaced one-by-one
+
+ Rollback
+
+New version breaks? 
+
+Roll back instantly ⏮
+
+Kubernetes keeps revision history
+
+Best Practices
+
+✔ Use YAML (declarative)
+✔ Store configs in Git
+✔ Use namespaces
+✔ Avoid manual prod changes
+✔ Always monitor desired vs actual state
+
+ One-Line Memory Trick
+
+Deployment = ReplicaSet + Rolling Updates + Rollbacks
