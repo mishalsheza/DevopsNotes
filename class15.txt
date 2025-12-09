@@ -1,0 +1,143 @@
+Class 15 - Understanding Kubernetes services
+
+Kubernetes is an open-source container orchestration platform used to automate the deployment, scaling, and management of containerized applications across a cluster of machines.
+
+It abstracts infrastructure details and allows developers to focus on application logic rather than server management.
+
+2. Pods
+
+A Pod is the smallest deployable unit in Kubernetes.
+It represents a single running process in the cluster.
+
+Key Features of Pods
+
+A pod can contain one or more containers
+
+All containers in a pod:
+
+Share the same IP address
+
+Share the same port space
+
+Share storage volumes
+
+Containers communicate with each other using localhost
+
+Characteristics
+
+Co-located: Containers run on the same node
+
+Co-started: Containers start and stop together
+
+Shared Networking: One IP per pod
+
+Analogy
+
+A pod is like a house, and containers are rooms inside it.
+The house has one address (IP), not the individual rooms.
+
+3. ReplicaSets
+
+A ReplicaSet ensures that a specified number of identical Pods are running at all times.
+
+Why ReplicaSets?
+
+If a pod crashes → a new pod is created automatically
+
+Ensures fault tolerance
+
+Enables horizontal scaling
+
+Key Points
+
+Works even for a single pod
+
+Kubernetes continuously compares:
+
+Desired state vs actual state
+
+If mismatch occurs → corrective action is taken
+
+4. Deployments
+
+A Deployment is a higher-level abstraction that manages ReplicaSets and Pods.
+
+Capabilities
+
+Declarative updates
+
+Scaling applications up or down
+
+Rolling updates (zero downtime)
+
+Rollbacks to previous versions
+
+Internal Structure
+Deployment
+   ↓
+ReplicaSet
+   ↓
+Pods
+
+
+Deployments are the recommended way to run stateless applications in Kubernetes.
+
+5. Services
+
+Pods are ephemeral (they can die and be recreated), so their IPs change.
+A Service provides a stable network endpoint to access pods.
+
+Types of Services
+ClusterIP
+
+Default service type
+
+Accessible only within the cluster
+
+NodePort
+
+Exposes the service on a static port on each node
+
+Automatically creates a ClusterIP internally
+
+Core Functions
+
+Service Discovery using labels
+
+Load Balancing traffic across pods
+
+Analogy
+
+Like multiple ticket counters in a cinema — users can go to any counter and still get served efficiently.
+
+6. Load Balancers
+
+Load balancers distribute traffic across multiple pods.
+
+Types
+
+Internal Load Balancer: Used inside the cluster
+
+External Load Balancer: Exposes services to the internet (cloud-based)
+
+They ensure:
+
+High availability
+
+Even traffic distribution
+
+7. YAML Files in Kubernetes
+
+Kubernetes resources are defined using YAML configuration files.
+
+Core Sections of YAML
+
+apiVersion – API version being used
+
+kind – Type of Kubernetes object (Pod, Deployment, Service)
+
+metadata – Name, labels, namespace
+
+spec – Desired state of the object
+
+Understanding YAML is essential for declarative Kubernetes management.
