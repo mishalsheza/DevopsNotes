@@ -1,0 +1,139 @@
+class 16 - Deep dive into Kubernetes services
+
+1. Communication Between Containers Within the Same Pod
+Pod Networking Basics
+
+A Pod is the smallest deployable unit in Kubernetes.
+
+All containers inside a pod:
+
+Share the same network namespace
+
+Share the same IP address
+
+Can communicate using localhost and standard ports
+
+Key Points
+
+Containers behave like multiple processes running on the same machine.
+
+No need for services or networking rules for intra-pod communication.
+
+Very fast communication since no external networking is involved.
+
+2. Communication Between Pods on the Same Node
+Inter-Pod Networking (Same Node)
+
+Pods on the same node communicate using a virtual network.
+
+Kubernetes relies on CNI (Container Network Interface) plugins to manage networking.
+
+Each pod gets a unique IP address.
+
+Role of CNI Plugins
+
+Allocate IP addresses to pods
+
+Set up virtual bridges and routes
+
+Ensure pod-to-pod connectivity without NAT
+
+Examples of CNI Plugins
+
+Weave
+
+Calico
+
+Flannel
+
+3. Communication Between Pods on Different Nodes
+Cross-Node Networking
+
+Pods on different nodes still communicate directly using pod IPs.
+
+Network plugins configure:
+
+Routing rules
+
+IP tables
+
+Overlay or underlay networks
+
+Role of kube-proxy
+
+Runs on every node
+
+Maintains iptables or IPVS rules
+
+Ensures traffic reaches the correct destination pod
+
+Handles service traffic routing
+
+Key Concept
+
+Kubernetes guarantees that any pod can communicate with any other pod in the cluster without NAT.
+
+4. Communication Between Pods and Services
+Kubernetes Services
+
+A Service provides a stable network endpoint for pods.
+
+Pods are ephemeral, but services are stable.
+
+Types of Services
+
+ClusterIP (default): Internal communication
+
+NodePort: Exposes service on node IP
+
+LoadBalancer: Cloud-provider based external access
+
+How Services Work
+
+A service:
+
+Gets a Cluster IP
+
+Selects pods using labels
+
+Load-balances traffic across matching pods
+
+Service Discovery
+
+CoreDNS maps service names to IP addresses.
+
+Pods can access services using:
+
+service-name.namespace.svc.cluster.local
+
+Endpoints
+
+Endpoints are dynamically updated
+
+Maintain the list of pod IPs backing a service
+
+kube-proxy uses these endpoints to route traffic
+
+Important Components in Kubernetes Networking
+CoreDNS
+
+Handles DNS resolution inside the cluster
+
+Enables service discovery by name
+
+Automatically updates records when services change
+
+kube-proxy
+
+Maintains network routing rules
+
+Uses iptables/IPVS
+
+Ensures load balancing and service routing
+
+Useful kubectl Commands
+kubectl get pods
+kubectl get svc
+kubectl describe svc <service-name>
+kubectl get endpoints
+kubectl get namespaces
