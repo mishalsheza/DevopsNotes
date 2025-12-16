@@ -1,0 +1,163 @@
+class 17 - Understanding HPA
+
+Horizontal Pod Autoscaler (HPA) is a Kubernetes feature that automatically adjusts the number of pod replicas in a workload based on resource utilization or other metrics. It helps applications handle varying loads efficiently while optimizing resource usage.
+
+What is Horizontal Pod Autoscaler (HPA)?
+
+HPA is a Kubernetes resource used to scale:
+
+Deployments
+
+ReplicaSets
+
+StatefulSets
+
+Scaling is based on:
+
+CPU utilization (most common)
+
+Memory utilization
+
+Custom or external metrics
+
+Purpose of HPA
+
+Automatically scale up pods during high load
+
+Automatically scale down pods when load decreases
+
+Improves availability, performance, and cost efficiency
+
+Horizontal Scaling Explained
+
+Horizontal Scaling means increasing or decreasing the number of pod replicas.
+
+Unlike vertical scaling (adding more CPU/RAM to one pod), HPA:
+
+Adds more pods
+
+Distributes traffic across them
+
+Simple Analogy
+
+If workload increases and current workers are overloaded, you hire more workers.
+Similarly, HPA adds more pods to share the load.
+
+Prerequisites for HPA
+1. Kubernetes Cluster
+
+Kubernetes must be installed and running (commonly via kubeadm)
+
+Required components:
+
+kubeadm – cluster setup
+
+kubectl – cluster management
+
+kubelet – node-level agent
+
+2. Metrics Server
+
+Mandatory for HPA
+
+Collects CPU and memory usage from nodes and pods
+
+Exposes metrics through Kubernetes API
+
+Without Metrics Server, HPA will not work.
+
+Key Kubernetes Commands Related to HPA
+Deploy Resources
+kubectl apply -f file.yaml
+
+Manual Scaling
+kubectl scale --replicas=<number> deployment/<deployment-name>
+
+View Resource Usage
+kubectl top pods
+kubectl top nodes
+
+
+Requires Metrics Server
+
+Monitoring
+kubectl get pods
+kubectl get nodes
+kubectl get hpa
+
+Deploying Horizontal Pod Autoscaler
+Step-by-Step Process
+
+Create a Deployment
+
+Define application pods with resource requests and limits.
+
+Install Metrics Server
+
+Deploy Metrics Server to collect CPU/memory data.
+
+Create HPA Resource
+
+Define:
+
+Minimum replicas
+
+Maximum replicas
+
+Target CPU or memory utilization
+
+Example HPA Behavior
+
+Minimum pods: 1
+
+Maximum pods: 10
+
+Target CPU utilization: 50%
+
+If CPU usage exceeds 50%, Kubernetes increases the number of pods automatically.
+
+Resource Requests and Limits
+Requests
+
+Minimum guaranteed CPU or memory
+
+Used by scheduler to place pods on nodes
+
+Limits
+
+Maximum resources a pod can consume
+
+Prevents one pod from consuming all resources
+
+HPA uses resource requests, not limits, to calculate scaling decisions.
+
+Real-Time Scaling Behavior
+
+HPA continuously monitors metrics
+
+When usage crosses the defined threshold:
+
+Pods are added
+
+When usage drops:
+
+Pods are removed (after cooldown period)
+
+Scaling happens automatically and dynamically.
+
+Troubleshooting Common Issues
+Metrics Not Available
+
+kubectl top fails
+
+HPA shows <unknown> metrics
+
+➡️ Solution: Ensure Metrics Server is installed and running.
+
+HPA Not Scaling
+
+Check:
+
+Resource requests defined in deployment
+
+Metrics Server availability
