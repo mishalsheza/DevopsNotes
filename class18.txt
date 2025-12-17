@@ -1,0 +1,160 @@
+The Core Problem CI/CD Solves
+
+Before CI/CD, teams did this:
+Write code
+Manually test
+Manually build
+Manually deploy
+Pray nothing breaks 
+Problems:
+Slow releases
+Human errors
+Bugs reach production
+No consistency
+ CI/CD was created to automate this entire flow.
+ 
+What is CI/CD?
+
+CI/CD has two parts.
+CI — Continuous Integration
+
+CI is the practice of frequently integrating code changes into a shared repository with automated builds and tests.
+What happens in CI:
+Code pushed to Git
+Build runs automatically
+Tests run automatically
+
+
+Two meanings of CD 
+Continuous Delivery
+
+Software is always in a deployable state, but deployment needs approval.
+Continuous Deployment
+
+Why Do We Need CI/CD?
+
+Benefits:
+Faster releases
+Automated testing
+Reduced human error
+Consistent deployments
+Rapid feedback
+
+ CI/CD Pipeline 
+
+Typical pipeline:
+Code → Build → Test → Scan → Package → Deploy
+
+Tools involved:
+Git
+GitHub Actions
+Docker
+Kubernetes
+
+What is GitHub Actions?
+
+GitHub Actions is a CI/CD platform that automates workflows directly from GitHub repositories.
+
+Key idea:
+YAML-based workflows
+Event-driven
+
+GitHub Actions Core Concepts (VERY IMPORTANT)
+
+ Workflow
+
+Automation pipeline
+Defined in YAML
+Location:
+.github/workflows/
+
+2️Event
+
+Triggers workflow
+Examples:
+push
+pull_request
+
+Job
+
+Set of steps
+Runs on a runner
+ Runner
+
+Machine that executes jobs
+Types:
+GitHub-hosted
+Self-hosted
+Step
+
+Individual task
+Implement a Simple CI using GitHub Actions
+
+
+On every push
+Build a Docker image
+Sample CI Workflow (EXAM SAFE)
+
+name: CI Pipeline
+on:  push:    
+branches: [ main ]
+jobs:  build:    
+runs-on: ubuntu-latest    
+steps:    - uses: actions/checkout@v3    
+- name: Build Docker image      
+run: docker build -t myapp .
+
+What is SAST & SCA? 
+
+SAST — Static Application Security Testing
+
+Analyzes source code for security vulnerabilities without executing it.
+Examples:
+SonarQube
+CodeQL
+
+SAST detects vulnerabilities early in the development phase.
+SCA — Software Composition Analysis
+
+Scans third-party dependencies for known vulnerabilities.
+Examples:
+OWASP Dependency Check
+Snyk
+SCA identifies risks in open-source dependencies.
+
+Improving CI with SAST & SCA
+
+Updated pipeline:
+Code → Build → Test → SAST → SCA → Package
+Why important?
+Shift-left security
+Catch issues early
+ Adding Kubernetes as a GitHub Actions Agent (CD)
+
+What is a Self-Hosted Runner?
+
+A self-hosted runner is a machine registered with GitHub Actions to execute workflows.
+In your case:
+Kubernetes cluster already installed
+Register it as runner
+Why use K8s as runner?
+
+Direct access to cluster
+Faster deployments
+Secure CD
+Continuous Deployment to Kubernetes (FLOW)
+
+This is a direct exam question.
+CD Flow
+
+CI builds Docker image
+Image pushed to registry
+GitHub Actions job runs on K8s runner
+kubectl applies manifests
+New version deployed
+GitHub → CI → Docker Registry → Kubernetes
+
+
+- name: Deploy to Kubernetes  run: kubectl apply -f deployment.yaml
+
+
