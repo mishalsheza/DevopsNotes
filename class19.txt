@@ -1,0 +1,142 @@
+GitHub Actions – Handwritten Revision Notes
+What is GitHub Actions?
+
+Tool built into GitHub
+
+Used for CI/CD automation
+
+Helps build, test, deploy code automatically
+
+Workflows run inside the GitHub repo itself
+
+Key Features
+
+Automated workflows
+
+10,000+ actions from GitHub Marketplace
+
+Custom workflows possible
+
+Supports Linux, Windows, macOS
+
+Setting Up Git Repository
+
+Steps:
+
+Create a GitHub repository
+
+Optional: README, .gitignore, License
+
+Clone repo to local machine
+
+git clone <repo-url>
+
+
+Add project files
+
+Example: pom.xml for Maven projects
+
+GitHub Actions Basics
+Workflow Files
+
+Stored in:
+
+.github/workflows/
+
+
+Written in YAML
+
+Sample Workflow (Maven + Java)
+name: Java CI with Maven
+on: push (main branch)
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - checkout code
+      - setup JDK 17
+      - mvn package
+
+Important Concepts
+
+Trigger → When workflow runs (push, pull request)
+
+Job → Set of steps
+
+Step → Individual action or command
+
+runs-on → OS environment
+
+Components of GitHub Actions
+Actions
+
+Reusable scripts
+
+Example:
+
+actions/checkout
+
+actions/setup-java
+
+Runners
+
+Virtual machines
+
+Common:
+
+ubuntu-latest (most preferred)
+
+windows-latest
+
+macos-latest
+
+Using Maven in GitHub Actions
+Steps:
+
+Setup Java using setup-java
+
+Run Maven commands:
+
+mvn package
+
+
+Output:
+
+.jar or .war file
+
+Caching
+
+Cache Maven dependencies
+
+Faster builds
+
+Lower cost
+
+Cost & Resource Management
+
+GitHub Actions may incur costs
+
+Tips:
+
+Use spot instances
+
+Stop unused runners
+
+Avoid long-running jobs
+
+Debugging & Troubleshooting
+Common Errors
+
+YAML indentation mistakes
+
+ Wrong JDK version
+
+Permission issues
+
+Fixes
+
+Check logs carefully
+
+Validate YAML syntax
+
+Verify versions & access rights
