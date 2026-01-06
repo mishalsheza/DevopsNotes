@@ -1,0 +1,171 @@
+GitHub Actions + Docker (Java Maven Project)
+
+1. Setting Up a Git Repository
+Clone Repository
+
+Clone the GitHub repository to local machine
+
+Ensure correct project structure:
+
+src/
+
+pom.xml
+
+git clone <repository-url>
+
+Basic Git Commands
+
+git add → stage changes
+
+git commit → save changes
+
+git push → upload to GitHub
+
+Best Practice
+
+Always create the repository on GitHub first
+
+Then clone it locally to avoid conflicts
+
+2. Introduction to GitHub Actions
+What is GitHub Actions?
+
+Built-in GitHub tool for CI/CD automation
+
+Executes workflows on GitHub-hosted runners
+
+Workflow Configuration
+
+Workflows are written in YAML
+
+Stored in:
+
+.github/workflows/
+
+Triggers
+
+Common triggers:
+
+push
+
+pull_request
+
+YAML Rules
+
+Indentation is critical
+
+Spaces matter
+
+Prefer copy-paste to avoid syntax errors
+
+Multi-Job Workflows
+
+Multiple jobs can run in parallel
+
+Supported environments:
+
+Ubuntu
+
+Windows
+
+macOS
+
+3. Building and Testing with Maven
+Maven Configuration
+
+pom.xml defines:
+
+Dependencies
+
+Plugins
+
+Build settings
+
+CI with Maven
+
+Automate:
+
+Compilation
+
+Testing
+
+Packaging
+
+mvn clean package
+
+
+Output:
+
+.jar or .war file (based on configuration)
+
+4. Docker Setup and Integration
+Docker Configuration
+
+Docker-related files stored with project code
+
+Key file:
+
+Dockerfile
+
+Docker works independently of Java runtime
+
+Docker Hub
+
+Used to store and share Docker images
+
+Images are versioned using tags
+
+Secrets Management
+
+Never hardcode credentials
+
+Use GitHub Secrets for:
+
+Docker Hub username
+
+Docker Hub password or token
+
+Build and Push Docker Images
+
+GitHub Actions can:
+
+Build Docker image
+
+Tag image correctly
+
+Push image to Docker Hub
+
+Testing with Docker
+
+Basic container tests can be automated
+
+Advanced testing depends on application code quality
+
+5. Advanced Topics
+Security Scanning
+
+Use CI tools to detect vulnerabilities
+
+Common scans:
+
+SAST (Static Analysis)
+
+DAST (Dynamic Analysis)
+
+Trivy
+
+Used for scanning Docker images
+
+Detects known vulnerabilities
+
+Should fail build if critical issues found
+
+Linting & Static Analysis
+
+Maintain code quality using:
+
+Checkstyle
+
+CodeQL
+
+Helps enforce coding standards and security rules
