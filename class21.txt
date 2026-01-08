@@ -1,0 +1,158 @@
+CI/CD with Kubernetes 
+Intro
+
+Focus of the class: Deploying applications on Kubernetes
+
+Emphasis on Continuous Integration (CI) and Continuous Deployment (CD)
+
+CI/CD is a core concept in modern DevOps practices
+
+Continuous Integration (CI)
+
+CI = frequent integration of code changes
+
+Developers merge code regularly into a shared repository
+
+Key goals:
+
+Automated builds
+
+Automated testing
+
+Early detection of bugs
+
+Codebase always in a deployable state
+
+Continuous Deployment (CD)
+
+CD extends CI by automating deployment
+
+Code changes are deployed to production automatically
+
+Focus areas:
+
+Infrastructure configuration
+
+Zero or minimal downtime
+
+Faster delivery of features and fixes
+
+Setting Up Kubernetes Environment
+Virtual Machine Setup
+
+Minimum requirement: Single-node Kubernetes cluster
+
+Tools used:
+
+VirtualBox
+
+Vagrant
+
+Vagrant:
+
+Uses scripts to automate VM creation
+
+Allows easy setup using copy-paste configurations
+
+Kubernetes Installation
+
+Kubernetes must be installed on the VM
+
+Shortcut approach:
+
+Use a pre-configured AMI with Kubernetes already installed
+
+Saves time and reduces setup complexity
+
+GitHub Actions
+What is GitHub Actions?
+
+Tool for automating CI/CD pipelines
+
+Runs workflows directly from GitHub repositories
+
+Supports:
+
+Build
+
+Test
+
+Package
+
+Release
+
+Deploy
+
+Custom (Self-Hosted) Runners
+Why Custom Runners?
+
+Used instead of GitHub-hosted runners
+
+Useful for:
+
+Custom environments
+
+Kubernetes access
+
+Cost control
+
+Runner Setup
+
+Recommended OS: Linux
+
+Steps:
+
+Register runner using config.sh
+
+Assign labels for job selection
+
+Apply proper security settings
+
+Runner appears in GitHub repository settings after registration
+
+Project Demonstration & Teamwork
+
+Teams build and present CI/CD-enabled projects
+
+CI/CD implemented using GitHub Actions and related tools
+
+Evaluation:
+
+Team collaboration
+
+Individual understanding and contribution
+
+Each member must clearly explain their role during presentations
+
+Testing and Quality Assurance
+Types of Testing
+
+System Integration Testing (SIT)
+
+Performance Testing
+
+Security Testing
+
+Automation in Testing
+
+Testing stages are automated within pipelines
+
+Reduces human error
+
+Ensures consistent and repeatable test execution
+
+Practical Considerations
+
+CI and CD are often kept separate
+
+Separation improves:
+
+Clarity
+
+Control
+
+Stability
+
+Deployment pipelines must be customized based on:
+
+Application requirements
