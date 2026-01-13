@@ -1,0 +1,184 @@
+class 23 - terraform in action
+
+1. Subnets and Their Dependencies
+Subnets in AWS
+
+A subnet is a range of IP addresses within a VPC
+
+Types of subnets:
+
+Public Subnet
+
+Connected to an Internet Gateway
+
+Resources can access the internet
+
+Private Subnet
+
+Not connected to Internet Gateway
+
+No direct internet access
+
+Implicit Dependencies in Terraform
+
+Terraform automatically detects dependencies
+
+When one resource references another, Terraform:
+
+Understands creation order
+
+Creates dependent resources first
+
+No need to manually specify dependencies in most cases
+
+2. VPC and Network Configuration
+Virtual Private Cloud (VPC)
+
+A logically isolated virtual network in AWS
+
+Dedicated to a single AWS account
+
+All subnets and resources exist inside a VPC
+
+CIDR Blocks
+
+CIDR defines the IP address range of a VPC
+
+Determines:
+
+Size of the network
+
+Number of available IPs
+
+Example purpose:
+
+Network segmentation
+
+IP planning
+
+Route Tables
+
+Control how traffic flows inside a VPC
+
+Rules decide where traffic is routed based on destination IP
+
+Associated with subnets
+
+3. Terraform Basics
+Terraform State Management
+
+Terraform maintains a state file
+
+File name:
+
+terraform.tfstate
+
+Tracks:
+
+Existing resources
+
+Resource configurations
+
+Changes made over time
+
+Remote State (Best Practice)
+
+Used when multiple people work on same infrastructure
+
+Common setup:
+
+S3 → store state file
+
+DynamoDB → state locking
+
+Prevents:
+
+State conflicts
+
+Accidental overwrites
+
+Main Terraform Files
+
+main.tf
+
+Core infrastructure configuration
+
+network.tf
+
+VPC
+
+Subnets
+
+Internet Gateway
+
+compute.tf
+
+EC2 instances
+
+Security groups
+
+4. Types of IP Addresses
+Private IP
+
+Assigned within a VPC
+
+Accessible only inside the VPC
+
+Used for internal communication
+
+Public IP
+
+Assigned to internet-facing resources
+
+Accessible from outside AWS
+
+Elastic IP
+
+Static public IP
+
+Belongs to AWS account
+
+Can be reassigned to different resources
+
+Useful for failover and stability
+
+5. Launching EC2 Instances
+
+EC2 instance cannot be created without an AMI
+
+AMI (Amazon Machine Image):
+
+Defines operating system
+
+Includes base software
+
+AWS provides multiple AMIs:
+
+Amazon Linux
+
+Ubuntu
+
+Windows
+
+6. Variable Management in Terraform
+Input Variables
+
+Used to customize configurations
+
+Allow reuse of Terraform code
+
+Output Variables
+
+Display useful information after apply
+
+Example:
+
+Public IP of EC2
+
+Load balancer DNS
+
+Local Variables
+
+Scoped to a specific configuration file
+
+Used for internal calculations and reuse

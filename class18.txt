@@ -1,3 +1,5 @@
+Class 18 - Intorduction to Ci/CD
+
 The Core Problem CI/CD Solves
 
 Before CI/CD, teams did this:

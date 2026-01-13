@@ -1,0 +1,176 @@
+class 22 - Intorduction to Infrastructure provisioning and Terraform
+
+Terraform & Infrastructure as Code – Revision Notes
+Introduction to Terraform
+
+Terraform is an open-source Infrastructure as Code (IaC) tool
+
+Used to provision and manage cloud infrastructure using code
+
+Supports multiple cloud providers:
+
+AWS
+
+Azure
+
+Google Cloud
+
+Key Characteristics of Terraform
+
+Platform Agnostic
+
+Works across multiple cloud providers
+
+Same configuration style regardless of provider
+
+Infrastructure as Code (IaC)
+
+Infrastructure is defined using configuration files
+
+Reduces manual errors
+
+Ensures repeatability and consistency
+
+Terraform Lifecycle Commands
+
+Terraform follows a fixed workflow using core commands.
+
+1. Terraform Init
+
+Initializes the working directory
+
+Downloads required:
+
+Providers
+
+Modules
+
+Locks provider versions for compatibility
+
+First command executed in any Terraform project
+
+2. Terraform Plan
+
+Compares:
+
+Current infrastructure state
+
+Desired state defined in .tf files
+
+Generates an execution plan
+
+Does not make real changes
+
+Used to preview changes safely
+
+3. Terraform Apply
+
+Executes the plan
+
+Creates or updates infrastructure
+
+Brings actual resources to the desired state
+
+Requires confirmation before execution
+
+4. Terraform Destroy
+
+Deletes all infrastructure created using Terraform
+
+Cleans up resources completely
+
+Used to avoid unnecessary cloud costs
+
+Advantages of Using Terraform
+
+Speed
+
+Automates infrastructure provisioning
+
+Saves time compared to manual setup
+
+Consistency
+
+Same configuration produces same infrastructure
+
+Avoids environment drift
+
+Version Control
+
+.tf files can be stored in Git
+
+Enables:
+
+Rollback
+
+Change tracking
+
+Auditing
+
+Supporting Tools & Related Concepts
+Configuration Management Tools
+
+Used alongside Terraform
+
+Manage software and OS-level configurations
+
+Examples:
+
+Ansible
+
+Puppet
+
+Chef
+
+Server Templating Tools
+
+Help create environments or containers
+
+Used with Terraform-managed infrastructure
+
+Examples:
+
+Vagrant (VM-based)
+
+Docker (container-based)
+
+Practical Demonstration (Class Example)
+EC2 Instance Creation using Terraform
+
+Define infrastructure in .tf files
+
+Specify:
+
+EC2 instance
+
+Instance type
+
+Region
+
+Use commands:
+
+terraform init
+
+terraform plan
+
+terraform apply
+
+Terraform state file tracks:
+
+Created resources
+
+Changes
+
+Deletions
+
+Terraform State Management
+
+State file keeps record of infrastructure
+
+Helps Terraform understand:
+
+What exists
+
+What needs change
+
+Critical for collaboration and updates
